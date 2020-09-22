@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -30,21 +31,11 @@ public class Company {
     @NotBlank
     private @Getter @Setter String name;
     private @Getter @Setter String phone;
+    private @Getter @Setter String web;
     private @Getter @Setter Address address;
-    private @Getter @Setter CompanyOpeningHours companyOpeningHours;
+    @Size(min = 7, max = 7)
+    private @Getter @Setter  List<DaySchedule> weekSchedule;
     private @Getter @Setter List<LocalDate> closedDays;
-
-    public Company(String id, String email, String avatarPicture, String name,
-            String phone, Address address, CompanyOpeningHours companyOpeningHours, List<LocalDate> closedDays) {
-        this.id = id;
-        this.email = email;
-        this.avatarPicture = avatarPicture;
-        this.name = name;
-        this.phone = phone;
-        this.address = address;
-        this.companyOpeningHours = companyOpeningHours;
-        this.closedDays = closedDays;
-    }
-
+    private @Getter @Setter Boolean companyDataIsSet;
     
 }
